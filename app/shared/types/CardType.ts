@@ -1,7 +1,8 @@
 export enum CardType {
-  CODE = 0,
-  TRAP = 1,
-  CURE = 2,
-  AS = 3,
-  SPECIAL = 4,
+  CODE_CLEAN = 0,
+  CODE_DIRTY = 2,
+  TRAP = 3,
+  CURE = 4,
+  AS = 5,
+  SPECIAL = 6,
 }

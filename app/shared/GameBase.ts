@@ -19,6 +19,7 @@ export abstract class GameBase {
 
   public playerConnected(name: string, ws: WebSocket): void {
     const player: Player = buildPlayer(name, ws);
+    console.log(player.name + " s'est connecté !");
     this._players.push(player);
     this._nbPlayers++;
     this._updateGameState();
@@ -38,6 +39,7 @@ export abstract class GameBase {
   private _updateGameState(): void {
     if (this._nbPlayers == this._requestedNbPlayers) {
       this._gameState = GameState.STARTED;
+      console.log('la partie commence !');
     }
   }
 }

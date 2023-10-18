@@ -1,17 +1,31 @@
-import WebSocket, { WebSocketServer } from 'ws';
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import WebSocket, { RawData, WebSocketServer } from 'ws';
+import { Observable, Subscriber } from 'rxjs';
+import { ComModel } from './ComModel';
+import { GameDTO } from './GameDTO';
 
 const webSocketServer: WebSocketServer = new WebSocketServer({ port: 8080 });
+const connections: ComModel[] = [];
 
-webSocketServer.on('connection', (webSocket: WebSocket): void => {
-  console.log('Client connected');
-
-  const webSocketObservable: Observable<string> = new Observable<string>((observer: Subscriber<string>): void => {
-    webSocket.on('message', (data: string): void => {
-      observer.next(data);
+const webSocketObservable$: Observable<GameDTO> = new Observable<GameDTO>((observer: Subscriber<GameDTO>): void => {
+  webSocketServer.on('connection', (webSocket: WebSocket): void => {
+    connections.push({
+      webSocket: webSocket,
+      com$: webSocketObservable$,
     });
 
-    webSocket.on('close', (): void => {
+    webSocket.on('message', (data: RawData): void => {
+      const buffer: Buffer | ArrayBuffer | Buffer[] = data;
+      if (Buffer.isBuffer(buffer)) {
+        const jsonString: string = buffer.toString('utf8');
+        const gameDTO: GameDTO = JSON.parse(jsonString);
+        observer.next(gameDTO);
+      } else {
+        throw Error('Not a buffer.');
+      }
+    });
+
+    webSocket.on('close', (code: number, buffer: Buffer): void => {
+      console.log(code, buffer);
       observer.complete();
     });
 
@@ -19,14 +33,6 @@ webSocketServer.on('connection', (webSocket: WebSocket): void => {
       observer.error(error);
     });
   });
-
-  const subscription: Subscription = webSocketObservable.subscribe((message: string): void => {
-    console.log('Received message:', message);
-    webSocket.send(`Received: ${message}`);
-  });
-
-  webSocket.on('close', (): void => {
-    console.log('Client disconnected');
-    subscription.unsubscribe();
-  });
 });
+
+webSocketObservable$.subscribe(a => console.log(a.msg, a.num));

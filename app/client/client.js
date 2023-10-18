@@ -5,17 +5,17 @@ let sendMessage = function (msg) {
 };
 
 ws.onopen = function (e) {
-  console.log('Client connected !');
+  console.log('You are connected !');
 };
 
 ws.onmessage = function (e) {
-  console.log('Client received a message !');
+  console.log('You received a message !', e);
 };
 
 ws.onclose = function (e) {
-  console.log('Client has closed the connection !');
+  console.log('The server has closed the connection with you!');
 };
 
 ws.onerror = function (e) {
-  console.log('Client got an error !');
+  console.log('You got an error !', e);
 };

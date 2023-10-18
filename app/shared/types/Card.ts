@@ -7,7 +7,55 @@ export interface Card {
   probability: number;
 }
 
-export const cards: Card[] = [
+export const allCards: Card[] = [
+  {
+    name: '5 lignes de code',
+    type: CardType.CODE_CLEAN,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
+  {
+    name: '5 lignes codées avec le cul',
+    type: CardType.CODE_DIRTY,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
+  {
+    name: '10 lignes de code',
+    type: CardType.CODE_CLEAN,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
+  {
+    name: '10 lignes codées avec le cul',
+    type: CardType.CODE_DIRTY,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
+  {
+    name: '25 lignes de code',
+    type: CardType.CODE_CLEAN,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
+  {
+    name: '25 lignes codées avec le cul',
+    type: CardType.CODE_DIRTY,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
+  {
+    name: '50 lignes de code',
+    type: CardType.CODE_CLEAN,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
+  {
+    name: '50 lignes codées avec le cul',
+    type: CardType.CODE_DIRTY,
+    description: 'Des lignes de code pour votre PR.',
+    probability: 0.1,
+  },
   {
     name: 'fatal error',
     type: CardType.TRAP,

@@ -1,17 +1,22 @@
 import { Card } from './Card';
+import { ComModel } from '../../server/ComModel';
 
 export interface Player {
   name: string;
-  websocket: WebSocket;
+  comModel: ComModel | undefined;
   cardsPlayed: Card[];
   cardsHand: Card[];
+  hisTurn: boolean;
+  hasPlayed: boolean;
 }
 
-export function buildPlayer(name: string, websocket: WebSocket): Player {
+export function buildPlayer(name: string, comModel: ComModel): Player {
   return {
     name,
-    websocket,
+    comModel,
     cardsPlayed: [],
     cardsHand: [],
+    hisTurn: false,
+    hasPlayed: false,
   };
 }

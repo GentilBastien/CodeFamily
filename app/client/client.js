@@ -1,7 +1,8 @@
 const ws = new WebSocket('ws://localhost:8080/ws');
 
-let sendMessage = function (msg) {
-  ws.send(msg);
+let sendMessage = function (objToSend) {
+  const stringyfiedObj = JSON.stringify(objToSend);
+  ws.send(stringyfiedObj);
 };
 
 ws.onopen = function (e) {

@@ -1,6 +1,7 @@
 export enum GameState {
   WAITING = 0,
   STARTED = 1,
-  FINISHED = 2,
-  TO_REMOVE = 3,
+  PAUSED = 2,
+  FINISHED = 3,
+  TO_REMOVE = 4,
 }

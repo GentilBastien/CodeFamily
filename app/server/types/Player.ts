@@ -1,5 +1,5 @@
 import { Card } from './Card';
-import { ComModel } from '../../server/ComModel';
+import { ComModel } from '../ComModel';
 
 export interface Player {
   name: string;

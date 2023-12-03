@@ -1,6 +1,6 @@
 import { GameState } from '../types/GameState';
 import { GameSettingsHandler } from './GameSettingsHandler';
-import { ComModel } from '../../server/ComModel';
+import { ComModel } from '../ComModel';
 
 export abstract class GameStateHandler extends GameSettingsHandler {
   public gameState: GameState;

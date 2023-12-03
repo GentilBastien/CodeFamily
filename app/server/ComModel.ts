@@ -1,8 +1,8 @@
 import WebSocket from 'ws';
 import { Observable } from 'rxjs';
-import { GameDTO } from './GameDTO';
+import { ServerDto } from './dtos/ServerDto';
 
 export interface ComModel {
   webSocket: WebSocket;
-  com$: Observable<GameDTO>;
+  com$: Observable<ServerDto>;
 }

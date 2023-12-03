@@ -1,8 +1,7 @@
 const ws = new WebSocket('ws://localhost:8080/ws');
 
 let sendMessage = function (objToSend) {
-  const stringyfiedObj = JSON.stringify(objToSend);
-  ws.send(stringyfiedObj);
+  ws.send(objToSend);
 };
 
 ws.onopen = function (e) {
@@ -10,7 +9,7 @@ ws.onopen = function (e) {
 };
 
 ws.onmessage = function (e) {
-  console.log('You received a message !', e);
+  console.log('You received a message !', e.data);
 };
 
 ws.onclose = function (e) {

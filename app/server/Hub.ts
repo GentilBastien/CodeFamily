@@ -1,7 +1,7 @@
 import { Game } from './game/Game';
 import { GameState } from './types/GameState';
 import { Player } from './types/Player';
-import { ComModel } from '../server/ComModel';
+import { ComModel } from './ComModel';
 
 const gamePaused = (game: Game): boolean => game.gameState === GameState.PAUSED;
 const gameWaiting = (game: Game): boolean => game.gameState === GameState.WAITING;

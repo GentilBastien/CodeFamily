@@ -11,7 +11,6 @@ export abstract class GameTurnHandler extends GameStateHandler {
   public override playerConnected(name: string, comModel: ComModel): void {
     super.playerConnected(name, comModel);
     this.playersComModels.push(comModel);
-    this.playersComModels.forEach(a => a.webSocket.send('caca'));
   }
 
   public override playerDisconnected(comModel: ComModel): void {

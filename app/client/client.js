@@ -1,8 +1,4 @@
-const ws = new WebSocket('ws://localhost:8080/ws');
-
-let sendMessage = function (objToSend) {
-  ws.send(objToSend);
-};
+let ws = new WebSocket('ws://localhost:8080/ws');
 
 ws.onopen = function (e) {
   console.log('You are connected !');
@@ -18,4 +14,18 @@ ws.onclose = function (e) {
 
 ws.onerror = function (e) {
   console.log('You got an error !', e);
+};
+
+function connect() {
+  const inputName = document.getElementById('pseudo').value;
+  let a = JSON.stringify({ code: 1000, field01: inputName });
+  sendMessage(a);
+}
+
+let sendMessage = function (objToSend) {
+  if (ws) {
+    ws.send(objToSend);
+  } else {
+    throw Error('Websocket Server is not available');
+  }
 };

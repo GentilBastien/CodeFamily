@@ -20,13 +20,14 @@ export abstract class GameSettingsHandler {
       const emptyPlayer: Player = this.players.find(playerWithNoComModel)!;
       emptyPlayer.name = name;
       emptyPlayer.comModel = comModel;
+      this.nbPlayers++;
       this.printMessage(emptyPlayer.name + " s'est connecté pour replace !");
     } else {
       const player: Player = buildPlayer(name, comModel);
       this.players.push(player);
+      this.nbPlayers++;
       console.log(player.name + " s'est connecté !");
     }
-    this.nbPlayers++;
   }
 
   public playerDisconnected(comModel: ComModel): void {
@@ -34,9 +35,9 @@ export abstract class GameSettingsHandler {
       (player: Player): boolean => player.comModel?.webSocket === comModel.webSocket
     );
     if (player) {
-      this.printMessage(player.name + " s'est déconnecté !");
       player.comModel = undefined;
       this.nbPlayers--;
+      this.printMessage(player.name + " s'est déconnecté !");
     } else {
       throw Error('Could not find player with websocket ' + comModel.webSocket);
     }
